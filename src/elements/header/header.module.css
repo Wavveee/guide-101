@@ -1,0 +1,35 @@
+header {
+    height: 90px;
+    color: rgb(204, 204, 204);
+    margin-bottom: 25px;
+}
+
+h1 {
+  margin: auto;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1900px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.logo {
+  width: 90px;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90px;
+  width: 280px;
+}
+
+.btn {
+  width: 130px;
+  height: 40px;
+  border-radius: 25px;
+}

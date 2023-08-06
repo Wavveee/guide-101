@@ -1,0 +1,7 @@
+.wrepper {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px auto;
+    padding: 0 20px;
+    width: 1900px;
+}
