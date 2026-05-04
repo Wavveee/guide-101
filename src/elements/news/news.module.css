@@ -2,11 +2,12 @@
   display: grid;
   margin: 0 auto;
   gap: 20px;
-  height: 800px;
+  height: 900px;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(11, 1fr);
   width: 1700px;
 }
+
 
 .news1 {
   grid-row: 1 / 6;

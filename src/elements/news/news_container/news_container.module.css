@@ -1,14 +1,25 @@
 .newsContainer {
-  background-color: azure;
+  background-image: url("./src/newsprew.jpg");
+  background-position: center;
+  background-size: cover;
   border-radius: 10px;
   width: 100%;
   height: 100%;
 }
 
 .newsDescription {
+  color: azure;
+  transition: 0.5s;
   padding: 15px;
   overflow: hidden;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid white;
+  opacity: 0;
+  text-shadow: 2px 2px 3px rgb(0, 0, 0);
+  background-color: #222222c7;
+}
+
+.newsContainer:hover .newsDescription {
+  opacity: 100;
 }
 
 .newsImg {
