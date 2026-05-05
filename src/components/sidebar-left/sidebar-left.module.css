@@ -1,0 +1,39 @@
+/* src/components/sidebar-left/sidebar-left.module.css */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 10px;
+}
+
+.menuGroup, .socialGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Відступ між пунктами */
+}
+
+.navLink, .socialLink {
+  color: #c9d1d9;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.navLink:hover, .socialLink:hover {
+  color: #58a6ff;
+  transform: translateX(5px); /* Легкий ефект при наведенні */
+}
+
+.groupTitle {
+  color: #8b949e;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.divider {
+  height: 1px;
+  background-color: #30363d;
+}

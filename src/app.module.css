@@ -1,0 +1,78 @@
+/* Головний контейнер на всю висоту екрана */
+.appWrapper {
+  background-color: #0d1117;
+  /* Темно-сірий "графіт" */
+  color: #e6edf3;
+  min-height: 100vh;
+  cursor: default;
+}
+
+/* Сітка для трьох колонок */
+.mainLayout {
+  display: grid;
+  grid-template-columns: 240px 1fr 300px;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  user-select: none;
+}
+
+/* Колонки-сайдбари */
+.sidebarLeft,
+.sidebarRight {
+  height: fit-content;
+}
+
+/* Ефект "залипання" при скролі */
+.sticky {
+  position: sticky;
+  top: 85px;
+  /* Відступ від верху (враховуючи висоту хедера) */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Центральний контент */
+.contentCenter {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+  /* Запобігає "випиранню" контенту за межі сітки */
+  user-select: text;
+  cursor: auto;
+}
+
+/* Стиль віджетів у правій колонці (заглушки) */
+.guestWidget,
+.userWidget {
+  background: #111111;
+  /* Трохи світліше за фон для об'єму */
+  border: 1px solid #222222;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.guestWidget h4,
+.userWidget h4 {
+  color: #ffb400;
+  /* Золотистий колір акцентів як у Guide-101 */
+  margin-bottom: 10px;
+}
+
+/* Адаптивність: для планшетів та телефонів */
+@media (max-width: 1100px) {
+  .mainLayout {
+    /* Ховаємо сайдбари або переставляємо їх у стовпчик */
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .sidebarLeft,
+  .sidebarRight {
+    display: none;
+    /* На маленьких екранах фокусуємося на новинах */
+  }
+}

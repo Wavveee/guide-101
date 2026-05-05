@@ -1,0 +1,110 @@
+.newsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.card {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column; /* Змінюємо з рядка на колонку */
+  transition: transform 0.2s, border-color 0.2s;
+  cursor: pointer; /* Робимо всю картку клікабельною */
+  user-select: none;
+}
+
+.card:hover {
+  border-color: #ffb400;
+  transform: translateY(-2px);
+}
+
+.imageWrapper {
+  width: 100%;        /* Тепер картинка займає всю ширину картка */
+  height: 220px;      /* Можеш підкоригувати висоту під себе */
+  position: relative;
+  flex-shrink: 0;
+}
+
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* Це важливо: картинка заповнить весь простір без деформації */
+}
+
+.categoryBadge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #ffb400;
+  color: #000;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.cardContent {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.cardTitle {
+  color: #f0f6fc;
+  margin: 0 0 10px 0;
+  font-size: 1.4rem;
+  cursor: inherit;
+}
+
+.cardLead {
+  color: #8b949e;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 15px;
+  /* Обмеження тексту трьома рядками */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  cursor: inherit;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #30363d;
+  padding-top: 15px;
+}
+
+.author {
+  color: #58a6ff;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: inherit;
+}
+
+.readMore {
+  color: #ffb400;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.readMore:hover {
+  text-decoration: underline;
+}
+
+.empty {
+  color: #8b949e;
+  text-align: center;
+  padding: 50px;
+  border: 2px dashed #30363d;
+  border-radius: 12px;
+}

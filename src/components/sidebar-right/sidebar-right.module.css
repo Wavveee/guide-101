@@ -1,0 +1,34 @@
+/* src/components/sidebar-right/sidebar-right.module.css */
+.sidebar {
+  padding: 10px;
+}
+
+.guestBox, .userBox {
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.guestBox h4, .userBox h4 {
+  color: #f0f6fc;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.guestBox p {
+  color: #8b949e;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.roleBadge {
+  display: inline-block;
+  background: rgba(88, 166, 255, 0.1);
+  color: #58a6ff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 10px;
+}
