@@ -1,0 +1,67 @@
+.tagsContainer {
+  margin-top: 25px;
+}
+
+.tagsContainer h4 {
+  color: #8b949e;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  padding-left: 5px;
+}
+
+/* Додаємо обмеження по висоті та скрол */
+.tagsList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 500px; /* Висота віджета */
+  overflow-y: auto;  /* Вертикальний скрол */
+  padding-right: 5px;
+}
+
+/* Стилізація скролбару (щоб був тонким і темним) */
+.tagsList::-webkit-scrollbar {
+  width: 4px;
+}
+.tagsList::-webkit-scrollbar-track {
+  background: transparent;
+}
+.tagsList::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 10px;
+}
+
+.tagCard {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tagCard:hover {
+  border-color: #ffb400;
+  background: #1c2128;
+}
+
+.tagCard.active {
+  border-color: #ffb400;
+  background: rgba(255, 180, 0, 0.05);
+}
+
+.tagName {
+  display: block;
+  color: #e6edf3;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.tagDesc {
+  color: #8b949e;
+  font-size: 0.75rem;
+  margin: 2px 0 0 0;
+  line-height: 1.2;
+}

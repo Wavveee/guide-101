@@ -1,29 +1,62 @@
 import React, { useEffect, useState } from 'react';
 import { db } from "../../firebaseConfig";
-import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
+import { collection, onSnapshot, query, orderBy, where, limit } from "firebase/firestore"; 
 import { Link } from 'react-router-dom';
 import styles from "./news.module.css";
 
-export function News() {
+export function News({ filterTag }) {
   const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Запит до колекції "news" із сортуванням за датою (свіжі зверху)
-    const q = query(collection(db, "news"), orderBy("createdAt", "desc"));
-    
+    setLoading(true);
+    const newsRef = collection(db, "news");
+    let q;
+
+    if (filterTag) {
+      // Фільтрація + Сортування + ЛІМІТ 9
+      q = query(
+        newsRef,
+        where("category", "==", filterTag),
+        orderBy("createdAt", "desc"),
+        limit(9)
+      );
+    } else {
+      // Сортування + ЛІМІТ 9
+      q = query(
+        newsRef, 
+        orderBy("createdAt", "desc"), 
+        limit(9)
+      );
+    }
+
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const newsData = snapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data()
       }));
       setNews(newsData);
+      setLoading(false);
+    }, (error) => {
+      console.error("Помилка Firebase:", error);
+      setLoading(false);
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [filterTag]);
+
+  if (loading) {
+    return <div className={styles.empty}>Завантаження...</div>;
+  }
 
   if (news.length === 0) {
-    return <div className={styles.empty}>Новин поки немає. Станьте першим, хто щось опублікує!</div>;
+    return (
+      <div className={styles.empty}>
+        {filterTag 
+          ? `У категорії "#${filterTag}" поки немає публікацій.` 
+          : "Новин поки немає."}
+      </div>
+    );
   }
 
   return (

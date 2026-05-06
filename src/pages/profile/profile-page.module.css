@@ -1,0 +1,112 @@
+.profileContainer {
+  padding: 40px 20px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.profileContainer h2 {
+  color: #ffb400;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.profileCard {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 15px;
+  display: flex;
+  padding: 30px;
+  gap: 30px;
+}
+
+.avatarBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.largeAvatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #ffb400;
+}
+
+.roleLabel {
+  background: rgba(255, 180, 0, 0.1);
+  color: #ffb400;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+
+.infoBlock {
+  flex: 1;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  color: #8b949e;
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.userName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.userEmail {
+  color: #c9d1d9;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid #30363d;
+  margin: 25px 0;
+}
+
+.actionBlock h4 {
+  color: #ffb400;
+  margin-bottom: 10px;
+}
+
+.actionBlock p {
+  color: #8b949e;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.requestBtn {
+  background: transparent;
+  border: 2px solid #ffb400;
+  color: #ffb400;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  position: relative;
+  z-index: 999; /* Виводить кнопку на передній план */
+  pointer-events: auto !important; /* Примусово вмикає кліки */
+}
+
+.requestBtn:hover {
+  background: #ffb400;
+  color: #000;
+}
+
+@media (max-width: 600px) {
+  .profileCard {
+    flex-direction: column;
+    align-items: center;
+  }
+}

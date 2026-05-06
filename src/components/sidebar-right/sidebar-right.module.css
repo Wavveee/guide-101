@@ -24,11 +24,51 @@
 
 .roleBadge {
   display: inline-block;
-  background: rgba(88, 166, 255, 0.1);
-  color: #58a6ff;
-  padding: 4px 10px;
+  background: rgba(255, 180, 0, 0.1); /* Прозорий жовтий */
+  color: #ffb400;
+  padding: 4px 12px;
   border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 700;
   margin-top: 10px;
+}
+
+/* Окремий стиль для гостя (наприклад, сірий) */
+.guestBadge {
+  background: rgba(139, 148, 158, 0.1);
+  color: #8b949e;
+}
+
+.loginHint {
+  font-size: 0.8rem;
+  color: #8b949e;
+  margin-top: 15px;
+  line-height: 1.4;
+}
+
+.profileBtn {
+  display: block;          /* Робимо блоковим елементом */
+  width: 100%;            /* Розтягуємо на всю доступну ширину */
+  box-sizing: border-box; /* Враховуємо внутрішні відступи у ширині */
+  margin-top: 15px;
+  padding: 12px;
+  background: transparent;
+  border: 1px solid #ffb400; /* Наш фірмовий жовтий */
+  color: #ffb400;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.profileBtn:hover {
+  background: rgba(255, 180, 0, 0.1);
+  transform: translateY(-2px); /* Ефект легкого підйому */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.profileBtn:active {
+  transform: translateY(0);
 }

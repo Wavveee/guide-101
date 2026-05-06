@@ -66,6 +66,7 @@ border-bottom: 2px solid #ffb400;
   padding: 4px 8px;
   width: 100%;
   outline: none;
+  cursor: text;
 }
 
 /* Права частина */

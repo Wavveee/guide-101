@@ -1,3 +1,4 @@
+/* --- Загальний макет сторінки --- */
 .newsContainer {
   padding: 20px;
   color: #e6edf3;
@@ -6,12 +7,13 @@
 }
 
 .backBtn {
-  color: #ffb400; /* Жовтий акцент */
+  color: #ffb400;
   text-decoration: none;
   font-weight: 600;
   display: inline-block;
   margin-bottom: 20px;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 .backBtn:hover {
@@ -39,6 +41,7 @@
   border-radius: 12px;
   margin-bottom: 30px;
   border: 1px solid #30363d;
+  object-fit: cover;
 }
 
 .lead {
@@ -47,7 +50,7 @@
   line-height: 1.6;
   color: #f0f6fc;
   margin-bottom: 25px;
-  border-left: 4px solid #ffb400; /* Жовта смужка збоку */
+  border-left: 4px solid #ffb400;
   padding-left: 20px;
 }
 
@@ -57,38 +60,166 @@
   color: #c9d1d9;
 }
 
-/* Секція коментарів */
+/* --- Секція коментарів (Контейнер) --- */
 .commentsSection {
   margin-top: 50px;
   padding-top: 30px;
   border-top: 1px solid #30363d;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.commentsSection h3 {
+  color: #ffb400;
+  margin-bottom: 20px;
+}
+
+/* --- Форма написання коментаря --- */
+.commentForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 40px;
+  box-sizing: border-box;
 }
 
 .commentForm textarea {
   width: 100%;
   background: #161b22;
   border: 1px solid #30363d;
+  border-radius: 8px;
   color: white;
   padding: 15px;
-  border-radius: 8px;
-  min-height: 100px;
-  margin-bottom: 10px;
+  min-height: 80px;
+  resize: vertical;
+  outline: none;
+  box-sizing: border-box; /* Важливо для однакової ширини */
+}
+
+.commentForm textarea:focus {
+  border-color: #ffb400;
 }
 
 .commentForm button {
+  align-self: flex-end;
   background: #ffb400;
-  color: black;
+  color: #000;
   border: none;
   padding: 10px 25px;
-  border-radius: 8px;
+  border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+.commentForm button:hover {
+  background: #eab308;
+}
+
+/* --- Список та окремий коментар --- */
+.commentsList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .commentItem {
+  position: relative; /* Важливо: це точка відліку для кнопки */
+  display: flex;
+  gap: 15px;
   background: #161b22;
   padding: 15px;
-  border-radius: 8px;
-  margin-top: 15px;
-  border-left: 2px solid #ffb400;
+  padding-bottom: 20px; /* Додаємо трохи місця знизу для кнопки */
+  border-radius: 10px;
+  border: 1px solid #30363d;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.commAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ffb400;
+  flex-shrink: 0;
+}
+
+.commContent {
+  flex: 1; /* Займає весь простір, що залишився */
+}
+
+.commHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+/* Контейнер для імені та ролі */
+.authorInfo {
+  display: flex;
+  align-items: center;
+  gap: 10px; 
+}
+
+.commAuthor {
+  color: #ffb400;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.roleTag {
+  font-size: 0.7rem;
+  background: rgba(255, 180, 0, 0.1);
+  color: #ffb400;
+  padding: 2px 8px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  font-weight: 800;
+  border: 1px solid rgba(255, 180, 0, 0.2);
+}
+
+.commDate {
+  color: #8b949e;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+.commText {
+  color: #c9d1d9;
+  line-height: 1.5;
+  font-size: 0.95rem;
+  margin: 0;
+  word-break: break-word;
+}
+
+.rightHeader {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Відступ між кошиком і датою */
+}
+
+.deleteBtn {
+  position: absolute; /* Вириваємо кнопку з потоку */
+  bottom: 12px;       /* Відступ від нижнього краю */
+  right: 12px;        /* Відступ від правого краю */
+  
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  opacity: 0.4;
+  filter: grayscale(1);
+}
+
+.deleteBtn:hover {
+  opacity: 1;
+  filter: grayscale(0);
+  background: rgba(255, 68, 68, 0.1);
+  transform: scale(1.1); /* Легкий ефект збільшення */
 }

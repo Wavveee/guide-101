@@ -1,0 +1,65 @@
+.footer {
+  width: 100%;
+  background-color: #0d1117; /* Основний фон */
+  border-top: 1px solid #30363d; /* Тонка лінія зверху */
+  padding: 30px 0;
+  flex-shrink: 0;
+  margin-top: auto; /* Виштовхує футер до низу, якщо контенту мало */
+  cursor: default;      /* Замість палички буде звичайна стрілка */
+  user-select: none;
+}
+
+.container {
+  max-width: 1200px; /* Або як у твого хедера */
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between; /* Розносить контент по краях */
+  align-items: center;
+  padding: 0 20px;
+}
+
+.brand {
+  color: #ffb400; /* Наш жовтий */
+  font-weight: 800;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column; /* Текст про курсову і пошта один під одним */
+  align-items: flex-end; /* Вирівнювання по правому краю */
+  gap: 5px;
+}
+
+.coursework {
+  color: #8b949e;
+  font-size: 0.9rem;
+  cursor: default;
+}
+
+.email {
+  color: #ffb400;
+  text-decoration: none;
+  cursor: default;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+
+.email:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+/* Адаптивність для мобілок */
+@media (max-width: 600px) {
+  .container {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  .info {
+    align-items: center;
+  }
+}

@@ -1,97 +1,86 @@
-.pageContainer {
-  padding: 20px;
-  color: #f0f6fc;
-}
-
-.headerRow {
-  margin-bottom: 30px;
-}
-
-.backLink {
-  color: #8b949e;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: 0.2s;
-}
-
-.backLink:hover {
-  color: #58a6ff;
-}
-
-.headerRow h2 {
-  margin-top: 10px;
-  font-size: 1.8rem;
-  color: #ffffff;
-}
-
-.addForm {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 800px; /* Обмежуємо ширину для зручності заповнення */
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px; /* Відступ між лейблом та інпутом */
-}
-
-.field label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #8b949e;
-}
-
-/* Стилізація всіх текстових полів */
-.field input, 
-.field textarea, 
-.field select {
-  background-color: #161b22;
+/* Контейнер сторінки */
+.addNewsContainer {
+  width: 100%; /* Замість фіксованих пікселів */
+  max-width: 1100px; /* Можеш поставити більше, або взагалі прибрати цей рядок */
+  margin: 0 auto;
+  padding: 40px; /* Трохи більше внутрішніх відступів для об'єму */
+  background: #161b22;
   border: 1px solid #30363d;
+  border-radius: 12px;
+  box-sizing: border-box; /* ВАЖЛИВО: щоб відступи не роздували контейнер */
+}
+
+.addNewsContainer h2 {
+  color: #ffb400;
+  margin-bottom: 35px;
+  text-align: left; /* Можна змінити на left, якщо форма широка — так виглядає професійніше */
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+/* Форма та її елементи */
+.form {
+  display: flex;
+  flex-direction: column; /* Все в один стовпчик */
+  gap: 20px; /* Відступи між полями */
+}
+
+/* Спільні стилі для інпутів, селекта та текстареа */
+.form input,
+.form select,
+.form textarea {
+  width: 100%;
+  padding: 16px; /* Збільшили з 14px до 16px */
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  color: #e6edf3;
+  font-size: 1.1rem; /* Трохи більший шрифт для зручності читання */
+  box-sizing: border-box;
+}
+
+/* Ефект фокусу (коли клікаємо в поле) */
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
   border-color: #ffb400;
-  border-radius: 8px;
-  padding: 12px 15px;
-  color: #ffffff;
-  font-size: 1rem;
-  outline: none;
-  transition: border-color 0.2s;
+  box-shadow: 0 0 0 2px rgba(255, 180, 0, 0.1);
 }
 
-.field input:focus, 
-.field textarea:focus {
-  border-color: #ffb400;
+/* Стиль для випадаючого списку (селекта) */
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238b949e' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 15px;
 }
 
-/* Окремий стиль для великого тексту */
-.mainContent {
-  min-height: 200px;
-  resize: vertical;
-}
-
-/* Рядок з двома колонками (Платформи та Категорія) */
-.gridFields {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-
-/* Кнопка публікації в стилі "Кутка" */
+/* Кнопка публікації */
 .submitBtn {
-background-color: #ffb400;
-  color: #000; /* Чорний текст на жовтому фоні читається найкраще */
+  background: #ffb400;
+  color: #000;
+  padding: 16px;
   border: none;
-  padding: 14px;
   border-radius: 8px;
   font-size: 1.1rem;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
-  transition: 0.3s;
   margin-top: 10px;
+  transition: transform 0.2s, background 0.2s;
 }
 
 .submitBtn:hover {
- background-color: #a371f7;
+  background: #e6a200;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(137, 87, 229, 0.3);
+}
+
+.submitBtn:active {
+  transform: translateY(0);
+}
+
+/* Стилізація плейсхолдерів (текст-підказка всередині) */
+.form input::placeholder,
+.form textarea::placeholder {
+  color: #484f58;
 }

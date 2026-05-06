@@ -1,102 +1,96 @@
 import React, { useState } from 'react';
 import { db } from "../../firebaseConfig";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { TAGS } from "../../constants/tags"; // Імпортуємо наш список тегів
 import styles from "./add-news-page.module.css";
 
 export function AddNewsPage({ user }) {
+  const [title, setTitle] = useState("");
+  const [lead, setLead] = useState("");
+  const [content, setContent] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [category, setCategory] = useState(""); // Тут буде зберігатися slug тегу
+  
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    title: '',
-    lead: '',
-    content: '',
-    details: '', 
-    imageUrl: '',
-    source: '',
-    category: 'Games'
-  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!category) {
+      alert("Будь ласка, оберіть категорію!");
+      return;
+    }
+
     try {
-      // Додаємо документ у колекцію "news"
       await addDoc(collection(db, "news"), {
-        ...formData,
+        title,
+        lead,
+        content,
+        imageUrl,
+        category, // Зберігаємо slug (наприклад, 'rpg' або 'шутери')
         authorId: user.uid,
         authorName: user.displayName,
         createdAt: serverTimestamp(),
       });
-      alert("Новину успішно додано!");
-      navigate("/"); // Повертаємося на головну після публікації
+      
+      navigate("/"); // Повертаємось на головну після публікації
     } catch (error) {
       console.error("Помилка при додаванні:", error);
     }
   };
 
   return (
-    <div className={styles.pageContainer}>
-      <div className={styles.headerRow}>
-        <Link to="/" className={styles.backLink}>← На головну</Link>
-        <h2>Створення нової публікації</h2>
-      </div>
+    <div className={styles.addNewsContainer}>
+      <h2>Створити новий допис</h2>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <input 
+          type="text" 
+          placeholder="Заголовок новини" 
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required 
+        />
 
-      <form onSubmit={handleSubmit} className={styles.addForm}>
-        {/* 1. Заголовок */}
-        <div className={styles.field}>
-          <label>Назва новини</label>
-          <input type="text" placeholder="Введіть заголовок..." required 
-            onChange={e => setFormData({...formData, title: e.target.value})} />
-        </div>
+        {/* --- ОСЬ НАШ НОВИЙ СПИСОК КАТЕГОРІЙ --- */}
+        <select 
+          value={category} 
+          onChange={(e) => setCategory(e.target.value)}
+          required
+          className={styles.select}
+        >
+          <option value="" disabled>Оберіть жанр або категорію</option>
+          {TAGS.map(tag => (
+            <option key={tag.id} value={tag.slug}>
+              {tag.name.replace('#', '')} {/* Прибираємо # для зручності у списку */}
+            </option>
+          ))}
+        </select>
 
-        {/* 2. Лід (Короткий опис) */}
-        <div className={styles.field}>
-          <label>Лід-абзац (коротко про головне)</label>
-          <textarea placeholder="Опишіть новину одним реченням..." required
-            onChange={e => setFormData({...formData, lead: e.target.value})} />
-        </div>
+        <input 
+          type="text" 
+          placeholder="Посилання на зображення (URL)" 
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+        />
 
-        {/* 3. Основна інформація */}
-        <div className={styles.field}>
-          <label>Основний текст</label>
-          <textarea className={styles.mainContent} placeholder="Детальний опис події..." required
-            onChange={e => setFormData({...formData, content: e.target.value})} />
-        </div>
+        <textarea 
+          placeholder="Короткий лід (опис для картки)" 
+          value={lead}
+          onChange={(e) => setLead(e.target.value)}
+          rows="3"
+          required
+        />
 
-        <div className={styles.gridFields}>
-          {/* 4. Деталі (Платформи) */}
-          <div className={styles.field}>
-            <label>Деталі (Платформи / Дата релізу)</label>
-            <input type="text" placeholder="PC, PS5, Xbox..." 
-              onChange={e => setFormData({...formData, details: e.target.value})} />
-          </div>
+        <textarea 
+          placeholder="Повний текст новини" 
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          rows="10"
+          required
+        />
 
-          {/* 5. Категорія */}
-          <div className={styles.field}>
-            <label>Категорія</label>
-            <select onChange={e => setFormData({...formData, category: e.target.value})}>
-              <option value="Games">Ігри</option>
-              <option value="Reviews">Огляди</option>
-              <option value="CyberSport">Кіберспорт</option>
-              <option value="Hardware">Залізо</option>
-            </select>
-          </div>
-        </div>
-
-        {/* 6. Зображення */}
-        <div className={styles.field}>
-          <label>URL зображення (обкладинка)</label>
-          <input type="text" placeholder="https://..." 
-            onChange={e => setFormData({...formData, imageUrl: e.target.value})} />
-        </div>
-
-        {/* 7. Джерело */}
-        <div className={styles.field}>
-          <label>Джерело інформації (посилання)</label>
-          <input type="text" placeholder="Джерело або цитата..." 
-            onChange={e => setFormData({...formData, source: e.target.value})} />
-        </div>
-
-        <button type="submit" className={styles.submitBtn}>Опублікувати новину</button>
+        <button type="submit" className={styles.submitBtn}>Опублікувати</button>
       </form>
     </div>
   );

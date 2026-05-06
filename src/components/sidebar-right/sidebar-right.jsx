@@ -1,20 +1,38 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { ROLE_NAMES } from '../../constants/roles';
+import { TagsWidget } from './tags-widget';
 import styles from "./sidebar-right.module.css";
 
 export function SidebarRight({ user }) {
+  // Визначаємо відображуване ім'я та роль
+  const displayName = user ? user.displayName : "Мандрівник";
+  const displayRole = user ? (ROLE_NAMES[user.role] || "Читач") : ROLE_NAMES.guest;
+
   return (
     <aside className={styles.sidebar}>
-      {!user ? (
-        <div className={styles.guestBox}>
-          <h4>Вітаємо на Guide-101!</h4>
-          <p>Увійдіть, щоб отримати доступ до всіх функцій порталу.</p>
+      <div className={styles.userBox}>
+        <h4>Мій профіль</h4>
+        <p>Привіт, <strong>{displayName}</strong>!</p>
+
+        <div className={`${styles.roleBadge} ${!user ? styles.guestBadge : ""}`}>
+          {displayRole}
         </div>
-      ) : (
-        <div className={styles.userBox}>
-          <h4>Мій профіль</h4>
-          <p>Привіт, <strong>{user.displayName}</strong>!</p>
-          <div className={styles.roleBadge}>{user.role}</div>
-        </div>
+
+        {/* Кнопка налаштувань, яка з'являється лише для залогінених користувачів */}
+        {user && (
+          <Link to="/profile" className={styles.profileBtn}>
+            Налаштування профілю
+          </Link>
+        )}
+      </div>
+
+      <TagsWidget />
+
+      {!user && (
+        <p className={styles.loginHint}>
+          Увійдіть, щоб отримати можливість писати коментарі та створювати дописи.
+        </p>
       )}
     </aside>
   );

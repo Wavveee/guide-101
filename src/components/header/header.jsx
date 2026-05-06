@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from "./header.module.css";
 import logo from "./src/gamepad.png";
+import { ROLE_NAMES } from '../../constants/roles';
 import { Link } from 'react-router-dom';
 import { signInWithPopup, signOut } from "firebase/auth";
 import { auth, provider } from "../../firebaseConfig";
@@ -40,7 +41,8 @@ export function Header({ user, setUser, onToggleAdd, isFormOpen }) {
         role: userData.role // Тепер user.role буде доступним!
       });
 
-      console.log("Вхід успішний. Роль:", userData.role);
+  // У файлі header.jsx
+console.log(`Вхід успішний. Вітаємо, ${user.displayName}! Ваша роль: ${ROLE_NAMES[user.role] || "Читач"}`);
     } catch (error) {
       console.error("Помилка авторизації:", error.message);
     }
