@@ -1,6 +1,6 @@
 .header {
- background-color: #161b22; /* Темний фон */
-border-bottom: 2px solid #ffb400;
+  background-color: #161b22;
+  border-bottom: 2px solid #ffb400;
   height: 65px;
   display: flex;
   align-items: center;
@@ -25,79 +25,83 @@ border-bottom: 2px solid #ffb400;
   align-items: center;
   gap: 12px;
   text-decoration: none;
+  width: 250px; 
+  flex-shrink: 0;
 }
 
-.logoImg { width: 32px; height: 32px; }
+.logoImg {
+  width: 32px;
+  height: 32px;
+}
 
 .title {
-  color: #ffb400;;
+  color: #ffb400;
   font-weight: 800;
   font-size: 1.2rem;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
 
-/* Центральна частина (Пошук) */
 .searchBlock {
   flex: 1;
-  max-width: 600px;
-  margin: 0 40px;
+  display: flex;
+  justify-content: center;
+  padding: 0; 
 }
-
 .searchWrapper {
-  background: #161b22;
-  border: 1px solid #30363d;
-  border-radius: 8px;
   display: flex;
   align-items: center;
-  padding: 6px 12px;
-  transition: 0.2s;
+  background: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 710px; 
+  margin-right: 40px;
 }
 
 .searchWrapper:focus-within {
- border-color: #ffb400;
-  background: #0d1117;
+  border-color: #ffb400;
+  background: #11161d;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .searchInput {
+  flex: 1;
   background: transparent;
   border: none;
-  color: white;
-  padding: 4px 8px;
-  width: 100%;
+  padding: 12px 16px;
+  color: #e6edf3;
   outline: none;
-  cursor: text;
+  font-size: 1rem;
 }
 
-/* Права частина */
 .rightBlock {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 20px;
+  width: 330px; 
+  flex-shrink: 0;
 }
 
 .createBtn {
-  display: flex;           /* Перетворюємо на флекс-контейнер */
-  align-items: center;     /* Центруємо текст вертикально */
-  justify-content: center; /* Центруємо текст горизонтально */
-  
-  height: 38px;            /* Фіксована висота (підганяємо під аватар/пошук) */
-  padding: 0 20px;         /* Тільки бокові відступи, вертикаль контролює flex */
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 38px;
+  padding: 0 20px;
   border: 1px solid #ffb400;
   color: #ffb400;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;      /* Можна трохи зменшити шрифт для витонченості */
-  
-  box-sizing: border-box;  /* Щоб рамка не збільшувала розмір кнопки */
+  font-size: 0.95rem;
   transition: all 0.3s ease;
 }
 
 .createBtn:hover {
   background-color: #ffb400;
-  color: #0d1117;          /* Текст стає темним на жовтому фоні */
+  color: #0d1117;
 }
 
 .userControls {
@@ -110,35 +114,21 @@ border-bottom: 2px solid #ffb400;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  /* Робимо чітку жовту рамку */
-  border: 2px solid #ffb400; 
+  border: 2px solid #ffb400;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  transition: transform 0.2s ease;
-}
-
-.avatarWrapper:hover {
-  transform: scale(1.05); /* Легке збільшення при наведенні */
 }
 
 .avatar {
-width: 100%;
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
-  /* Можна додати тонкий чорний відступ між фото і рамкою */
-  border: 1px solid #0d1117;
 }
 
-.notifyIcon {
-  color: #8b949e;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-.loginBtn, .logoutBtn {
+.loginBtn,
+.logoutBtn {
   background: transparent;
   color: #8b949e;
   border: none;
@@ -147,12 +137,27 @@ width: 100%;
 }
 
 .logoutBtn:hover {
-  color: #ffb400; /* Підсвітка виходу жовтим */
+  color: #ffb400;
 }
 
-.searchIcon {
-  cursor: default;       /* Замість текстового курсора — звичайна стрілка */
-  user-select: none;    /* Забороняємо виділення самого символу лупи */
-  pointer-events: none; /* Робимо іконку "прозорою" для кліків, щоб вони йшли на обгортку */
-  margin-right: 8px;
+/* Кнопка пошуку (іконка) */
+.searchBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  transition: opacity 0.2s;
+}
+
+.searchIconImg {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(0.8);
+}
+
+.searchBtn:hover .searchIconImg {
+  filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(10deg);
 }

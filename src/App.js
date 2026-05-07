@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Header } from "./components/header/header";
 import { Footer } from "./components/footer/footer";
 import { ProfilePage } from "./pages/profile/profile-page";
@@ -10,53 +10,53 @@ import { NewsPage } from "./pages/news-details/news-page";
 import { AddNewsPage } from "./pages/add-news/add-news-page"; // Наша нова сторінка
 import styles from "./app.module.css";
 
-function App() {
+function AppContent() {
   const [user, setUser] = useState(null);
+  const location = useLocation(); // ТЕПЕР ВІН ПРАЦЮЄ!
+
+  // Перевірка: ми на головній?
+  const isHomePage = location.pathname === '/';
 
   return (
-    <Router>
-      <div className={styles.appWrapper}>
-        {/* Хедер тепер просто знає про користувача */}
-        <Header user={user} setUser={setUser} />
+    <div className={styles.appWrapper}>
+      <Header user={user} setUser={setUser} />
 
-        <div className={styles.mainLayout}>
+      <div className={styles.mainLayout}>
+        <aside className={styles.sidebarLeft}>
+          <SidebarLeft />
+        </aside>
 
-          <aside className={styles.sidebarLeft}>
-            <SidebarLeft />
-          </aside>
+        <main className={styles.contentCenter}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/news/:id" element={<NewsPage user={user} />} />
+            <Route path="/profile" element={<ProfilePage user={user} />} />
+            <Route
+              path="/add-news"
+              element={
+                (user?.role === 'admin' || user?.role === 'author')
+                  ? <AddNewsPage user={user} />
+                  : <Home />
+              }
+            />
+          </Routes>
+        </main>
 
-          <main className={styles.contentCenter}>
-            <Routes>
-              {/* Головна сторінка зі стрічкою новин */}
-              <Route path="/" element={<Home />} />
-
-              {/* Сторінка однієї новини */}
-              <Route path="/news/:id" element={<NewsPage user={user} />} />
-
-              {/* Сторінка профілю */}
-              <Route path="/profile" element={<ProfilePage user={user} />} />
-
-              {/* НОВИЙ МАРШРУТ: Окрема сторінка створення новини */}
-              {/* Додаємо перевірку прав прямо тут для безпеки роутингу */}
-              <Route
-                path="/add-news"
-                element={
-                  (user?.role === 'admin' || user?.role === 'author')
-                    ? <AddNewsPage user={user} />
-                    : <Home /> // Якщо прав немає, повертаємо на головну
-                }
-              />
-            </Routes>
-          </main>
-
-          <aside className={styles.sidebarRight}>
-            <SidebarRight user={user} />
-          </aside>
-        </div>
-        <Footer />
+        <aside className={styles.sidebarRight}>
+          {/* ПЕРЕДАЄМО ПАРАМЕТР showTags ПРЯМО СЮДИ */}
+          <SidebarRight user={user} showTags={isHomePage} />
+        </aside>
       </div>
-    </Router>
+      <Footer />
+    </div>
   );
 }
 
-export default App;
+// ГОЛОВНИЙ КОМПОНЕНТ ТЕПЕР ТІЛЬКИ ОБГОРТКА
+export default function App() {
+  return (
+    <Router>
+      <AppContent />
+    </Router>
+  );
+}

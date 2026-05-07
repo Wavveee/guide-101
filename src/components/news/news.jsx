@@ -4,7 +4,7 @@ import { collection, onSnapshot, query, orderBy, where, limit } from "firebase/f
 import { Link } from 'react-router-dom';
 import styles from "./news.module.css";
 
-export function News({ filterTag }) {
+export function News({ filterTag, searchQuery }) { // Додали searchQuery
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -13,8 +13,8 @@ export function News({ filterTag }) {
     const newsRef = collection(db, "news");
     let q;
 
+    // 1. Формуємо запит до БД (фільтрація лише за категорією)
     if (filterTag) {
-      // Фільтрація + Сортування + ЛІМІТ 9
       q = query(
         newsRef,
         where("category", "==", filterTag),
@@ -22,7 +22,6 @@ export function News({ filterTag }) {
         limit(9)
       );
     } else {
-      // Сортування + ЛІМІТ 9
       q = query(
         newsRef, 
         orderBy("createdAt", "desc"), 
@@ -35,7 +34,19 @@ export function News({ filterTag }) {
         id: doc.id,
         ...doc.data()
       }));
-      setNews(newsData);
+
+      // 2. Клієнтська фільтрація за пошуковим запитом
+      let finalNews = newsData;
+      
+      if (searchQuery) {
+        const lowerQuery = searchQuery.toLowerCase();
+        finalNews = newsData.filter(item => 
+          item.title.toLowerCase().includes(lowerQuery) || 
+          item.category.toLowerCase().includes(lowerQuery)
+        );
+      }
+
+      setNews(finalNews);
       setLoading(false);
     }, (error) => {
       console.error("Помилка Firebase:", error);
@@ -43,7 +54,7 @@ export function News({ filterTag }) {
     });
 
     return () => unsubscribe();
-  }, [filterTag]);
+  }, [filterTag, searchQuery]); // Ефект спрацює, якщо зміниться тег АБО текст пошуку
 
   if (loading) {
     return <div className={styles.empty}>Завантаження...</div>;
@@ -52,9 +63,11 @@ export function News({ filterTag }) {
   if (news.length === 0) {
     return (
       <div className={styles.empty}>
-        {filterTag 
-          ? `У категорії "#${filterTag}" поки немає публікацій.` 
-          : "Новин поки немає."}
+        {searchQuery 
+          ? `За запитом "${searchQuery}" нічого не знайдено.` 
+          : filterTag 
+            ? `У категорії "#${filterTag}" поки немає публікацій.` 
+            : "Новин поки немає."}
       </div>
     );
   }
