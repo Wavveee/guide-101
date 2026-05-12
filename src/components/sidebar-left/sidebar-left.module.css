@@ -2,38 +2,53 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  padding: 10px;
+  gap: 10px;
+  padding: 20px;
 }
 
-.menuGroup, .socialGroup {
+.group {
   display: flex;
   flex-direction: column;
-  gap: 12px; /* Відступ між пунктами */
-}
-
-.navLink, .socialLink {
-  color: #c9d1d9;
-  text-decoration: none;
-  font-size: 0.95rem;
-  transition: 0.2s;
-  display: flex;
-  align-items: center;
-}
-
-.navLink:hover, .socialLink:hover {
-  color: #58a6ff;
-  transform: translateX(5px); /* Легкий ефект при наведенні */
+  gap: 8px;
 }
 
 .groupTitle {
-  color: #8b949e;
-  font-size: 0.8rem;
-  text-transform: uppercase;
+  color: #8b949e; /* Сірий колір, щоб не відволікати від основних лінків */
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
   margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.link {
+  color: #e6edf3;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+  padding: 5px 0;
+}
+
+.link:hover {
+  color: #ffb400; /* Твій акцентний жовтий */
 }
 
 .divider {
-  height: 1px;
-  background-color: #30363d;
+  border: none;
+  border-top: 1px solid #30363d;
+  margin: 15px 0;
+  width: 100%;
+}
+
+.activeLink {
+  color: #ffb400;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.icon {
+  margin-right: 10px;
+  display: inline-block;
+  width: 20px;
+  text-align: center;
 }
