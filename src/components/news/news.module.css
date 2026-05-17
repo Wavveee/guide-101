@@ -10,9 +10,11 @@
   border-radius: 12px;
   overflow: hidden;
   display: flex;
-  flex-direction: column; /* Змінюємо з рядка на колонку */
+  flex-direction: column;
+  /* Змінюємо з рядка на колонку */
   transition: transform 0.2s, border-color 0.2s;
-  cursor: pointer; /* Робимо всю картку клікабельною */
+  cursor: pointer;
+  /* Робимо всю картку клікабельною */
   user-select: none;
 }
 
@@ -22,8 +24,10 @@
 }
 
 .imageWrapper {
-  width: 100%;        /* Тепер картинка займає всю ширину картка */
-  height: 220px;      /* Можеш підкоригувати висоту під себе */
+  width: 100%;
+  /* Тепер картинка займає всю ширину картка */
+  height: 220px;
+  /* Можеш підкоригувати висоту під себе */
   position: relative;
   flex-shrink: 0;
 }
@@ -31,7 +35,8 @@
 .imageWrapper img {
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* Це важливо: картинка заповнить весь простір без деформації */
+  object-fit: cover;
+  /* Це важливо: картинка заповнить весь простір без деформації */
 }
 
 .categoryBadge {
@@ -107,4 +112,54 @@
   padding: 50px;
   border: 2px dashed #30363d;
   border-radius: 12px;
+}
+
+/* Контейнер для кнопок у футері картки */
+.cardActions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Стиль для кнопки видалення */
+.deleteBtn {
+  background: transparent;
+  border: 1px solid #ff4444;
+  color: #ff4444;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.deleteBtn:hover {
+  background: #ff4444;
+  color: #ffffff;
+  box-shadow: 0 0 8px rgba(255, 68, 68, 0.4);
+}
+
+.editBtn {
+  background: transparent;
+  border: 1px solid #38bdf8;
+  /* Приємний геймерський блакитний колір */
+  color: #38bdf8;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  /* Обов'язково для Link, щоб прибрати підкреслення */
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.editBtn:hover {
+  background: #38bdf8;
+  color: #0d1117;
+  /* Темний колір тексту при наведенні, щоб легко читалося */
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
 }

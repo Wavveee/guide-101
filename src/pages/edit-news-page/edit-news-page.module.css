@@ -1,0 +1,88 @@
+.editPage {
+  width: 100%; /* Хай займає всю ширину центральної колонки */
+  box-sizing: border-box;
+  padding: 25px;
+  background: #161b22;
+  border-radius: 12px;
+  border: 1px solid #30363d;
+}
+
+.editPage h1 {
+  color: #ffb400;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* КЛЮЧОВЕ ВИПРАВЛЕННЯ: розтягуємо поля від краю до краю */
+.form input, 
+.form textarea {
+  width: 100%; 
+  box-sizing: border-box; /* Щоб падінги не розпирали інпути за межі форми */
+  background: #0d1117;
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit; /* Щоб шрифт у textarea не ставав "системним" */
+}
+
+.form input:focus, 
+.form textarea:focus {
+  border-color: #ffb400;
+  outline: none;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.saveBtn {
+  flex: 2;
+  background: #ffb400;
+  color: #000;
+  border: none;
+  padding: 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.saveBtn:hover {
+  background: #e6a300;
+}
+
+.deleteBtn {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #ff4444;
+  color: #ff4444;
+  padding: 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.deleteBtn:hover {
+  background: #ff4444;
+  color: #fff;
+}
+.loader {
+  text-align: center;
+  color: #8b949e;
+  margin-top: 50px;
+}

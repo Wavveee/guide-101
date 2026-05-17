@@ -7,7 +7,8 @@ import { SidebarLeft } from "./components/sidebar-left/sidebar-left";
 import { SidebarRight } from "./components/sidebar-right/sidebar-right";
 import { Home } from "./pages/home/home";
 import { NewsPage } from "./pages/news-details/news-page";
-import { AddNewsPage } from "./pages/add-news/add-news-page"; // Наша нова сторінка
+import { AddNewsPage } from "./pages/add-news/add-news-page"; 
+import { EditNewsPage } from "./pages/edit-news-page/edit-news-page";
 import styles from "./app.module.css";
 
 function AppContent() {
@@ -28,7 +29,7 @@ function AppContent() {
 
         <main className={styles.contentCenter}>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home user={user} />} />
             <Route path="/news/:id" element={<NewsPage user={user} />} />
             <Route path="/profile" element={<ProfilePage user={user} />} />
             <Route
@@ -37,6 +38,14 @@ function AppContent() {
                 (user?.role === 'admin' || user?.role === 'author')
                   ? <AddNewsPage user={user} />
                   : <Home />
+              }
+            />
+            <Route
+              path="/edit-news/:id"
+              element={
+                (user?.role === 'admin' || user?.role === 'author')
+                  ? <EditNewsPage user={user} />
+                  : <Home user={user} />
               }
             />
           </Routes>

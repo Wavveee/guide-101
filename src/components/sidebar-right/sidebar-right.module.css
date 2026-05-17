@@ -72,3 +72,31 @@
 .profileBtn:active {
   transform: translateY(0);
 }
+
+.profileActions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.myPostsBtn {
+  display: block;
+  text-align: center;
+  background: #21262d;
+  color: #c9d1d9;
+  border: 1px solid #30363d;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+
+.myPostsBtn:hover {
+  background: #30363d;
+  color: #f0f6fc;
+  box-shadow: 0 4px 12px rgba(48, 54, 61, 0.3);
+}
