@@ -163,3 +163,31 @@
   /* Темний колір тексту при наведенні, щоб легко читалося */
   box-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
 }
+
+.loadMoreWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.loadMoreBtn {
+  background: #161b22;
+  color: #ffb400; /* Твій фірмовий золотий колір */
+  border: 1px solid #30363d;
+  padding: 12px 30px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.loadMoreBtn:hover {
+  background: #ffb400;
+  color: #0d1117;
+  border-color: #ffb400;
+  box-shadow: 0 0 15px rgba(255, 180, 0, 0.3);
+  transform: translateY(-2px);
+}

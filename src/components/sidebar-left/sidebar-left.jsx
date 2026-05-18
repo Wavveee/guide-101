@@ -35,7 +35,7 @@ export function SidebarLeft() {
       <div className={styles.group}>
         <h4 className={styles.groupTitle}>СПІЛЬНОТА</h4>
         <a 
-          href="https://discord.com" 
+          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1" 
           target="_blank" 
           rel="noreferrer" 
           className={styles.link}
@@ -43,7 +43,7 @@ export function SidebarLeft() {
           Discord
         </a>
         <a 
-          href="https://t.me" 
+          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&list=RDdQw4w9WgXcQ&start_radio=1" 
           target="_blank" 
           rel="noreferrer" 
           className={styles.link}
