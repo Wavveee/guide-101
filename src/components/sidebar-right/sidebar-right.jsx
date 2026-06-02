@@ -7,14 +7,12 @@ import styles from "./sidebar-right.module.css";
 export function SidebarRight({ user, showTags }) {
   const location = useLocation();
 
-  // Безпечно перевіряємо через тернарний оператор
   const displayName = user ? user.displayName : "Мандрівник";
   const displayRole = user ? (ROLE_NAMES[user.role] || "Читач") : ROLE_NAMES.guest;
   const isProfilePage = location.pathname === '/profile';
 
   return (
     <aside className={styles.sidebar}>
-      {/* Блок профілю */}
       <div className={styles.userBox}>
         <h4>Мій профіль</h4>
         <p>Привіт, <strong>{displayName}</strong>!</p>
@@ -23,7 +21,6 @@ export function SidebarRight({ user, showTags }) {
           {displayRole}
         </div>
 
-        {/* Контейнер для кнопок керування — показуємо тільки для залогінених */}
         {user && (
           <div className={styles.profileActions}>
             {!isProfilePage && (
@@ -32,7 +29,6 @@ export function SidebarRight({ user, showTags }) {
               </Link>
             )}
 
-            {/* БЕЗПЕЧНА ПЕРЕВІРКА: використовуємо знак питання user?.role */}
             {(user?.role === 'author' || user?.role === 'admin') && (
               <Link to="/?author=me" className={styles.myPostsBtn}>
                 Мої дописи
@@ -42,14 +38,12 @@ export function SidebarRight({ user, showTags }) {
         )}
       </div>
 
-      {/* Категорії */}
       {showTags && (
         <div className={styles.tagsContainer}>
           <TagsWidget />
         </div>
       )}
 
-      {/* Підказка для гостей */}
       {!user && showTags && (
         <p className={styles.loginHint}>
           Увійдіть, щоб отримати можливість писати коментарі та створювати дописи.

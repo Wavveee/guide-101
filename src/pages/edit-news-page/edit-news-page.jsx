@@ -5,7 +5,7 @@ import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import styles from './edit-news-page.module.css';
 
 export function EditNewsPage({ user }) {
-    const { id } = useParams(); // Дістаємо id новини з URL
+    const { id } = useParams(); 
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -17,7 +17,7 @@ export function EditNewsPage({ user }) {
     });
     const [loading, setLoading] = useState(true);
 
-    // 1. Завантажуємо дані новини при відкритті сторінки
+
     useEffect(() => {
         const fetchPost = async () => {
             try {
@@ -55,23 +55,21 @@ export function EditNewsPage({ user }) {
         if (user) fetchPost();
     }, [id, user, navigate]);
 
-    // 2. Обробка змін в полях
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    // 3. Збереження змін (Update)
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
             const docRef = doc(db, "news", id);
             await updateDoc(docRef, {
                 ...formData,
-                updatedAt: new Date() // Фіксуємо час оновлення
+                updatedAt: new Date() 
             });
             alert("Допис успішно оновлено!");
-            navigate(`/news/${id}`); // Повертаємо користувача до читання новини
+            navigate(`/news/${id}`); 
         } catch (error) {
             console.error("Помилка при оновленні:", error);
             alert("Помилка при збереженні.");
@@ -86,7 +84,7 @@ export function EditNewsPage({ user }) {
         try {
             await deleteDoc(doc(db, "news", id));
             alert("Допис видалено.");
-            navigate('/'); // Після видалення йдемо на головну
+            navigate('/'); 
         } catch (error) {
             console.error("Помилка при видаленні:", error);
         }

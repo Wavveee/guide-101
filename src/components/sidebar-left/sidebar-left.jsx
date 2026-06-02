@@ -2,7 +2,7 @@ import React from 'react';
 import styles from "./sidebar-left.module.css";
 
 export function SidebarLeft() {
-  // Список ресурсів, які ми реально використовували
+
   const techStack = [
     { name: 'React', url: 'https://react.dev', icon: '⚛️' },
     { name: 'Firebase', url: 'https://firebase.google.com', icon: '🔥' },
@@ -13,7 +13,6 @@ export function SidebarLeft() {
 
   return (
     <nav className={styles.sidebar}>
-      {/* НОВИЙ БЛОК: Технології (замість навігації) */}
       <div className={styles.group}>
         <h4 className={styles.groupTitle}>ТЕХНОЛОГІЇ</h4>
         {techStack.map((tech) => (
@@ -31,7 +30,6 @@ export function SidebarLeft() {
 
       <hr className={styles.divider} />
 
-      {/* Спільнота залишається на місці */}
       <div className={styles.group}>
         <h4 className={styles.groupTitle}>СПІЛЬНОТА</h4>
         <a 

@@ -13,9 +13,9 @@ import styles from "./app.module.css";
 
 function AppContent() {
   const [user, setUser] = useState(null);
-  const location = useLocation(); // ТЕПЕР ВІН ПРАЦЮЄ!
+  const location = useLocation(); 
 
-  // Перевірка: ми на головній?
+  
   const isHomePage = location.pathname === '/';
 
   return (
@@ -61,7 +61,7 @@ function AppContent() {
   );
 }
 
-// ГОЛОВНИЙ КОМПОНЕНТ ТЕПЕР ТІЛЬКИ ОБГОРТКА
+
 export default function App() {
   return (
     <Router>

@@ -8,7 +8,6 @@ export function News({ filterTag, searchQuery, authorFilter, user }) {
   const [news, setNews] = useState([]);
   const [loading, setLoading] = useState(true);
   
-  // НОВІ СТЕЙТИ ДЛЯ ПАГІНАЦІЇ
   const [visibleLimit, setVisibleLimit] = useState(9); // Починаємо з 9 новин
   const [hasMore, setHasMore] = useState(true);        // Чи є що завантажувати далі
 
@@ -137,7 +136,6 @@ export function News({ filterTag, searchQuery, authorFilter, user }) {
             ))}
           </div>
 
-          {/* НОВА КНОПКА ЗАВАНТАЖИТИ ЩЕ */}
           {hasMore && (
             <div className={styles.loadMoreWrapper}>
               <button 

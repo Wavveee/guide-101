@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { db } from "../../firebaseConfig";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { TAGS } from "../../constants/tags"; // Імпортуємо наш список тегів
+import { TAGS } from "../../constants/tags"; 
 import styles from "./add-news-page.module.css";
 
 export function AddNewsPage({ user }) {
@@ -10,7 +10,7 @@ export function AddNewsPage({ user }) {
   const [lead, setLead] = useState("");
   const [content, setContent] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [category, setCategory] = useState(""); // Тут буде зберігатися slug тегу
+  const [category, setCategory] = useState(""); 
   
   const navigate = useNavigate();
 
@@ -28,13 +28,13 @@ export function AddNewsPage({ user }) {
         lead,
         content,
         imageUrl,
-        category, // Зберігаємо slug (наприклад, 'rpg' або 'шутери')
+        category,
         authorId: user.uid,
         authorName: user.displayName,
         createdAt: serverTimestamp(),
       });
       
-      navigate("/"); // Повертаємось на головну після публікації
+      navigate("/"); 
     } catch (error) {
       console.error("Помилка при додаванні:", error);
     }
@@ -52,7 +52,7 @@ export function AddNewsPage({ user }) {
           required 
         />
 
-        {/* --- ОСЬ НАШ НОВИЙ СПИСОК КАТЕГОРІЙ --- */}
+
         <select 
           value={category} 
           onChange={(e) => setCategory(e.target.value)}
@@ -62,7 +62,7 @@ export function AddNewsPage({ user }) {
           <option value="" disabled>Оберіть жанр або категорію</option>
           {TAGS.map(tag => (
             <option key={tag.id} value={tag.slug}>
-              {tag.name.replace('#', '')} {/* Прибираємо # для зручності у списку */}
+              {tag.name.replace('#', '')} 
             </option>
           ))}
         </select>
